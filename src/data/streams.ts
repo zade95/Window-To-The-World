@@ -2,6 +2,57 @@ import { StreamLocation } from '../types';
 
 export const DEFAULT_LOFI_STREAM_ID = 'jfKfPfyJRdk'; // Lofi Girl 24/7 Live stream
 
+export const SCENERY_SPACE_COMPILATION = [
+  {
+    title: 'Earth & Orbital Horizons',
+    subtitle: 'Low Earth Orbit • ISS View',
+    category: 'space',
+    url: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop',
+  },
+  {
+    title: 'Starlight Cosmos & Galaxy',
+    subtitle: 'Milky Way Core • Deep Space',
+    category: 'space',
+    url: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=2070&auto=format&fit=crop',
+  },
+  {
+    title: 'Aurora Borealis Dancing Sky',
+    subtitle: 'Lapland • Finland',
+    category: 'nature',
+    url: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?q=80&w=2070&auto=format&fit=crop',
+  },
+  {
+    title: 'Alpine Mountain Mirror Lake',
+    subtitle: 'High Sierra Mountains',
+    category: 'nature',
+    url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop',
+  },
+  {
+    title: 'Tokyo Neon Midnight Skyline',
+    subtitle: 'Shibuya & Shinjuku Lights',
+    category: 'urban',
+    url: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?q=80&w=2070&auto=format&fit=crop',
+  },
+  {
+    title: 'Pacific Golden Horizon Coast',
+    subtitle: 'Venice Ocean Sunset',
+    category: 'coastal',
+    url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop',
+  },
+  {
+    title: 'Deep Cosmic Nebula',
+    subtitle: 'Interstellar Clouds & Stellar Dust',
+    category: 'space',
+    url: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=2072&auto=format&fit=crop',
+  },
+  {
+    title: 'Majestic Alpine Peak Dawn',
+    subtitle: 'Swiss Alps Crests',
+    category: 'nature',
+    url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop',
+  },
+];
+
 export const STREAM_LOCATIONS: StreamLocation[] = [
   {
     id: 'd13S5M1aZbc',
@@ -16,6 +67,7 @@ export const STREAM_LOCATIONS: StreamLocation[] = [
     category: 'urban',
     atmosphere: 'Neon Lights & Urban Rhythm',
     description: 'The world\'s busiest pedestrian intersection illuminated by towering digital billboards in Shibuya.',
+    imageUrl: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?q=80&w=2070&auto=format&fit=crop',
   },
   {
     id: 'P9C25Un7qsM',
@@ -23,13 +75,14 @@ export const STREAM_LOCATIONS: StreamLocation[] = [
     title: 'Earth Orbit from ISS',
     location: 'Low Earth Orbit',
     country: 'International Space Station',
-    flag: '🚀',
+    flag: '🌌',
     timezone: 'UTC',
     coordinates: '51.6444° N, 0.0000° E',
     weather: 'Zero Gravity Vacuum',
     category: 'space',
     atmosphere: 'Cosmic Silence & Orbital Sunset',
     description: 'Live high-definition streaming of planet Earth from 400km above the atmosphere aboard the ISS.',
+    imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop',
   },
   {
     id: '9A9_2Z6L878',
@@ -45,6 +98,7 @@ export const STREAM_LOCATIONS: StreamLocation[] = [
     atmosphere: 'Cozy Rain & Misty Cobblestones',
     description: 'Glistening damp reflections and iconic red double-decker buses passing through rainy London.',
     ambientSoundPreset: 'rain',
+    imageUrl: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2070&auto=format&fit=crop',
   },
   {
     id: '1-iS1BvRzYk',
@@ -59,6 +113,7 @@ export const STREAM_LOCATIONS: StreamLocation[] = [
     category: 'urban',
     atmosphere: 'Midnight Electric & Metropolis Energy',
     description: 'The glowing crossroads of the world in Midtown Manhattan, pulsing with theater marquee lights.',
+    imageUrl: 'https://images.unsplash.com/photo-1506146332389-18140dc7b2fb?q=80&w=2070&auto=format&fit=crop',
   },
   {
     id: '0O_A4hK3dK4',
@@ -74,6 +129,7 @@ export const STREAM_LOCATIONS: StreamLocation[] = [
     atmosphere: 'Golden Hour Waves & Ocean Breeze',
     description: 'Palm trees swaying along the Pacific coast with golden California sunshine and crashing ocean surf.',
     ambientSoundPreset: 'waves',
+    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop',
   },
   {
     id: 'y60wz09b_uI',
@@ -88,6 +144,7 @@ export const STREAM_LOCATIONS: StreamLocation[] = [
     category: 'wildlife',
     atmosphere: 'Sun-Drenched Savannah & Serengeti Sunset',
     description: 'Wild elephants, giraffes, zebras, and birds gathering naturally at a secluded watering hole.',
+    imageUrl: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=2070&auto=format&fit=crop',
   },
   {
     id: 'J95yT9Gj5kY',
@@ -102,6 +159,7 @@ export const STREAM_LOCATIONS: StreamLocation[] = [
     category: 'cozy',
     atmosphere: 'Gondola Reflections & Serene Waters',
     description: 'Historic gondolas glidng across the turquoise waters of the Grand Canal framed by Venetian architecture.',
+    imageUrl: 'https://images.unsplash.com/photo-1514890547357-a9ee288728e0?q=80&w=2070&auto=format&fit=crop',
   },
   {
     id: '2g811Pr7hVM',
@@ -117,6 +175,7 @@ export const STREAM_LOCATIONS: StreamLocation[] = [
     atmosphere: 'Deep Sea Azure & Tranquil Marine Life',
     description: 'Sunlight filtering through swaying kelp fronds with leopard sharks, sea otters, and colorful fish.',
     ambientSoundPreset: 'waves',
+    imageUrl: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2070&auto=format&fit=crop',
   },
   {
     id: 'sT15pS2XvP4',
@@ -131,6 +190,7 @@ export const STREAM_LOCATIONS: StreamLocation[] = [
     category: 'urban',
     atmosphere: 'Parisian Twilight & Sparkling Light Show',
     description: 'A panoramic view over Haussmann roofs towards La Tour Eiffel illuminated against the dusk sky.',
+    imageUrl: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2073&auto=format&fit=crop',
   },
   {
     id: 's080pGThgW8',
@@ -146,5 +206,6 @@ export const STREAM_LOCATIONS: StreamLocation[] = [
     atmosphere: 'Emerald Celestial Dancing Lights',
     description: 'Ethereal green waves of the Northern Lights shimmering across frozen pine forests and starry polar skies.',
     ambientSoundPreset: 'wind',
+    imageUrl: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?q=80&w=2070&auto=format&fit=crop',
   },
 ];

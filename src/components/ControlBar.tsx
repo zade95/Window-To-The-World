@@ -13,6 +13,8 @@ import {
   Pin,
   PinOff,
   Sliders,
+  Image as ImageIcon,
+  Tv,
 } from 'lucide-react';
 import { SoundState } from '../types';
 
@@ -25,6 +27,8 @@ interface ControlBarProps {
   onToggleFullscreen: () => void;
   isPinned: boolean;
   onTogglePin: () => void;
+  bgMode?: 'video' | 'photo';
+  onToggleBgMode?: () => void;
 }
 
 export const ControlBar: React.FC<ControlBarProps> = ({
@@ -36,6 +40,8 @@ export const ControlBar: React.FC<ControlBarProps> = ({
   onToggleFullscreen,
   isPinned,
   onTogglePin,
+  bgMode = 'video',
+  onToggleBgMode,
 }) => {
   const [showAudioPopover, setShowAudioPopover] = useState(false);
 
@@ -50,10 +56,10 @@ export const ControlBar: React.FC<ControlBarProps> = ({
     <div className="relative select-none flex flex-col items-center">
       {/* Audio Settings Glass Popover */}
       {showAudioPopover && (
-        <div className="absolute bottom-full mb-4 p-5 rounded-[32px] bg-black/80 border border-white/15 backdrop-blur-[32px] text-white shadow-2xl w-80 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-3 duration-300">
-          <div className="flex items-center justify-between border-b border-white/10 pb-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/90">
+        <div className="absolute bottom-full mb-4 p-5 rounded-[32px] bg-white/10 border border-white/25 backdrop-blur-[40px] text-white shadow-[0_16px_40px_rgba(0,0,0,0.4)] w-80 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-3 duration-300">
+          <div className="flex items-center justify-between border-b border-white/15 pb-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white">
             <span>Audio & Soundscape Mixer</span>
-            <Sliders className="w-3.5 h-3.5" />
+            <Sliders className="w-3.5 h-3.5 text-white/80" />
           </div>
 
           {/* Main Live Stream Volume */}
@@ -153,15 +159,30 @@ export const ControlBar: React.FC<ControlBarProps> = ({
       )}
 
       {/* Immersive UI Glass Floating Control Dock */}
-      <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-3.5 rounded-[40px] bg-white/5 border border-white/10 backdrop-blur-[32px] shadow-2xl text-white">
+      <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-3.5 rounded-[40px] bg-white/12 border border-white/25 backdrop-blur-[40px] shadow-[0_16px_40px_rgba(0,0,0,0.5)] text-white">
         {/* Stream Gallery / View Switcher Button */}
         <button
           onClick={onOpenGallery}
           title="Browse All 10 Windows"
-          className="p-3.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 transition-all duration-300 hover:scale-105 cursor-pointer text-white/80 hover:text-white"
+          className="p-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 transition-all duration-300 hover:scale-105 cursor-pointer text-white/90 hover:text-white"
         >
           <Grid className="w-5 h-5" />
         </button>
+
+        {/* Scenery & Space Photo Compilation Background Toggle */}
+        {onToggleBgMode && (
+          <button
+            onClick={onToggleBgMode}
+            title={bgMode === 'photo' ? 'Switch to Live Stream Video' : 'Switch to Sceneries & Space HD Photo Compilation'}
+            className={`p-3.5 rounded-full border transition-all duration-300 hover:scale-105 cursor-pointer ${
+              bgMode === 'photo'
+                ? 'bg-white/25 border-white/40 text-white shadow-lg'
+                : 'bg-white/10 hover:bg-white/20 border-white/15 text-white/80'
+            }`}
+          >
+            {bgMode === 'photo' ? <ImageIcon className="w-5 h-5 text-amber-200" /> : <Tv className="w-5 h-5" />}
+          </button>
+        )}
 
         {/* Lofi Beats Toggle Button */}
         <button
@@ -169,8 +190,8 @@ export const ControlBar: React.FC<ControlBarProps> = ({
           title={soundState.lofiPlaying ? 'Pause Lofi Music' : 'Play Lofi Music'}
           className={`flex items-center gap-2 px-4 py-3 rounded-full border transition-all duration-300 hover:scale-105 cursor-pointer ${
             soundState.lofiPlaying
-              ? 'bg-white/20 border-white/40 text-white shadow-lg'
-              : 'bg-white/5 hover:bg-white/15 border-white/10 text-white/70'
+              ? 'bg-white/25 border-white/40 text-white shadow-lg'
+              : 'bg-white/10 hover:bg-white/20 border-white/15 text-white/80'
           }`}
         >
           <Headphones className={`w-4 h-4 ${soundState.lofiPlaying ? 'animate-bounce text-white' : ''}`} />
@@ -182,7 +203,7 @@ export const ControlBar: React.FC<ControlBarProps> = ({
         {/* Main Teleport Button (Hero Action in Immersive UI) */}
         <button
           onClick={onTeleport}
-          className="group relative flex items-center gap-3 px-6 sm:px-8 py-3.5 rounded-full bg-white text-black font-extrabold tracking-[0.2em] uppercase text-xs transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-[0_0_40px_rgba(255,255,255,0.25)] hover:shadow-[0_0_50px_rgba(255,255,255,0.4)]"
+          className="group relative flex items-center gap-3 px-6 sm:px-8 py-3.5 rounded-full bg-white text-black font-extrabold tracking-[0.2em] uppercase text-xs transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)]"
         >
           <Compass className="w-5 h-5 text-black group-hover:rotate-180 transition-transform duration-700" />
           <span>Teleport</span>
@@ -194,8 +215,8 @@ export const ControlBar: React.FC<ControlBarProps> = ({
           title="Audio Mixer & Ambient Sounds"
           className={`p-3.5 rounded-full border transition-all duration-300 hover:scale-105 cursor-pointer ${
             showAudioPopover
-              ? 'bg-white/20 border-white/40 text-white'
-              : 'bg-white/5 hover:bg-white/15 border-white/10 text-white/80'
+              ? 'bg-white/25 border-white/40 text-white'
+              : 'bg-white/10 hover:bg-white/20 border-white/15 text-white/90'
           }`}
         >
           {soundState.streamMuted ? (
@@ -211,8 +232,8 @@ export const ControlBar: React.FC<ControlBarProps> = ({
           title={isPinned ? 'Unpin UI (Auto-Hide Enabled)' : 'Pin UI Always Visible'}
           className={`p-3.5 rounded-full border transition-all duration-300 hover:scale-105 cursor-pointer ${
             isPinned
-              ? 'bg-white/20 border-white/40 text-white'
-              : 'bg-white/5 hover:bg-white/15 border-white/10 text-white/60'
+              ? 'bg-white/25 border-white/40 text-white'
+              : 'bg-white/10 hover:bg-white/20 border-white/15 text-white/70'
           }`}
         >
           {isPinned ? <Pin className="w-5 h-5" /> : <PinOff className="w-5 h-5" />}
@@ -222,7 +243,7 @@ export const ControlBar: React.FC<ControlBarProps> = ({
         <button
           onClick={onToggleFullscreen}
           title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
-          className="p-3.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 transition-all duration-300 hover:scale-105 cursor-pointer text-white/80"
+          className="p-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 transition-all duration-300 hover:scale-105 cursor-pointer text-white/90"
         >
           {isFullscreen ? <Minimize2 className="w-5 h-5" /> : <Maximize2 className="w-5 h-5" />}
         </button>

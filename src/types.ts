@@ -12,6 +12,7 @@ export interface StreamLocation {
   atmosphere: string; // e.g. "Neon Lights & Urban Rhythm"
   description: string;
   ambientSoundPreset?: 'rain' | 'waves' | 'wind' | 'birds';
+  imageUrl?: string;
 }
 
 export interface SoundState {

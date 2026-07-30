@@ -18,6 +18,7 @@ export default function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [teleportEffect, setTeleportEffect] = useState<boolean>(false);
+  const [bgMode, setBgMode] = useState<'video' | 'photo'>('video');
 
   const [soundState, setSoundState] = useState<SoundState>({
     streamVolume: 80,
@@ -132,12 +133,13 @@ export default function App() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-black select-none font-sans text-white">
-      {/* 1. Full-Screen YouTube Background Stream */}
+      {/* 1. Full-Screen YouTube Background Stream / Photo Compilation */}
       <BackgroundVideo
         currentStream={currentStream}
         volume={soundState.streamVolume}
         isMuted={soundState.streamMuted}
         onErrorFallback={handleTeleport}
+        bgMode={bgMode}
       />
 
       {/* 2. Background Lofi Stream Player */}
@@ -241,6 +243,8 @@ export default function App() {
               onToggleFullscreen={toggleFullscreen}
               isPinned={isPinned}
               onTogglePin={() => setIsPinned(!isPinned)}
+              bgMode={bgMode}
+              onToggleBgMode={() => setBgMode((prev) => (prev === 'video' ? 'photo' : 'video'))}
             />
           </div>
 

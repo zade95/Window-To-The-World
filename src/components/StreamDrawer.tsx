@@ -141,8 +141,8 @@ export const StreamDrawer: React.FC<StreamDrawerProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-xl animate-in fade-in duration-300">
-      <div className="relative w-full max-w-4xl max-h-[85vh] overflow-y-auto rounded-[36px] bg-white/5 border border-white/10 backdrop-blur-[32px] text-white shadow-2xl p-6 sm:p-8 flex flex-col gap-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/40 backdrop-blur-3xl animate-in fade-in duration-300">
+      <div className="relative w-full max-w-4xl max-h-[85vh] overflow-y-auto rounded-[36px] bg-white/12 border border-white/25 backdrop-blur-[45px] text-white shadow-[0_32px_64px_-12px_rgba(0,0,0,0.6)] p-6 sm:p-8 flex flex-col gap-6">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-white/10 pb-4">
           <div className="flex items-center gap-3">

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { StreamLocation } from '../types';
+import { SCENERY_SPACE_COMPILATION } from '../data/streams';
 
 interface BackgroundVideoProps {
   currentStream: StreamLocation;
@@ -7,6 +8,7 @@ interface BackgroundVideoProps {
   isMuted: boolean;
   onErrorFallback: () => void;
   onPlayerReady?: () => void;
+  bgMode?: 'video' | 'photo';
 }
 
 declare global {
@@ -22,6 +24,7 @@ export const BackgroundVideo: React.FC<BackgroundVideoProps> = ({
   isMuted,
   onErrorFallback,
   onPlayerReady,
+  bgMode = 'video',
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<any>(null);
@@ -29,6 +32,21 @@ export const BackgroundVideo: React.FC<BackgroundVideoProps> = ({
   const [isBuffering, setIsBuffering] = useState<boolean>(true);
   const currentVideoIdRef = useRef<string>(currentStream.id);
   const backupIndexRef = useRef<number>(0);
+  const [photoIndex, setPhotoIndex] = useState<number>(0);
+
+  // Fallback / High quality scenery image
+  const bgImageUrl =
+    currentStream.imageUrl ||
+    SCENERY_SPACE_COMPILATION[photoIndex % SCENERY_SPACE_COMPILATION.length].url;
+
+  // Rotate photo compilation every 12 seconds in photo mode
+  useEffect(() => {
+    if (bgMode !== 'photo') return;
+    const interval = setInterval(() => {
+      setPhotoIndex((prev) => (prev + 1) % SCENERY_SPACE_COMPILATION.length);
+    }, 12000);
+    return () => clearInterval(interval);
+  }, [bgMode]);
 
   // Load YouTube Iframe API once
   useEffect(() => {
@@ -94,7 +112,6 @@ export const BackgroundVideo: React.FC<BackgroundVideoProps> = ({
           if (onPlayerReady) onPlayerReady();
         },
         onStateChange: (event: any) => {
-          // YT.PlayerState.PLAYING is 1, BUFFERING is 3
           if (event.data === window.YT.PlayerState.PLAYING) {
             setIsBuffering(false);
           } else if (event.data === window.YT.PlayerState.BUFFERING) {
@@ -168,23 +185,33 @@ export const BackgroundVideo: React.FC<BackgroundVideoProps> = ({
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none select-none z-0 bg-black">
-      {/* Container aspect ratio trick to ensure video stretches to fit screen without black bars */}
+      {/* High Quality Sceneries & Spaces Backdrop Layer */}
       <div
-        ref={containerRef}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.77777778vh] min-w-full h-[56.25vw] min-h-full scale-[1.12] transition-opacity duration-1000 ease-in-out pointer-events-none"
+        className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out scale-105 ${
+          bgMode === 'photo' || isBuffering ? 'opacity-100 scale-110' : 'opacity-20'
+        }`}
+        style={{ backgroundImage: `url('${bgImageUrl}')` }}
       />
 
-      {/* Glass / Vignette overlay gradient to enhance readability of UI overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/50 pointer-events-none" />
+      {/* Container aspect ratio trick for Youtube Video */}
+      <div
+        ref={containerRef}
+        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.77777778vh] min-w-full h-[56.25vw] min-h-full scale-[1.12] transition-opacity duration-1000 ease-in-out pointer-events-none ${
+          bgMode === 'photo' ? 'opacity-0' : 'opacity-100'
+        }`}
+      />
+
+      {/* Glass / Vignette overlay gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40 pointer-events-none" />
       <div className="absolute inset-0 bg-radial-vignette pointer-events-none opacity-60" />
 
       {/* Buffering or Teleporting indicator */}
-      {isBuffering && (
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center transition-all duration-500">
-          <div className="flex flex-col items-center gap-3 px-6 py-4 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-2xl shadow-2xl">
-            <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-            <span className="text-xs tracking-[0.2em] text-white/80 font-mono uppercase animate-pulse">
-              Connecting Signal...
+      {isBuffering && bgMode === 'video' && (
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-xs flex items-center justify-center transition-all duration-500">
+          <div className="flex flex-col items-center gap-3 px-6 py-4 rounded-3xl bg-white/10 border border-white/20 backdrop-blur-2xl shadow-2xl">
+            <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            <span className="text-xs tracking-[0.2em] text-white font-mono uppercase animate-pulse">
+              Connecting Live Stream...
             </span>
           </div>
         </div>
