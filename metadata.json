@@ -1,0 +1,6 @@
+{
+  "name": "Window to the World",
+  "description": "A minimalist, Zen-like ambient portal to live views and atmosphere from around the globe.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
