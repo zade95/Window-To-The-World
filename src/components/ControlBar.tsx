@@ -56,7 +56,7 @@ export const ControlBar: React.FC<ControlBarProps> = ({
     <div className="relative select-none flex flex-col items-center">
       {/* Audio Settings Glass Popover */}
       {showAudioPopover && (
-        <div className="absolute bottom-full mb-4 p-5 rounded-[32px] bg-white/10 border border-white/25 backdrop-blur-[40px] text-white shadow-[0_16px_40px_rgba(0,0,0,0.4)] w-80 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-3 duration-300">
+        <div className="absolute bottom-full mb-4 p-5 rounded-[32px] bg-white/12 border border-white/25 backdrop-blur-[40px] text-white shadow-[0_16px_40px_rgba(0,0,0,0.4)] w-80 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-3 duration-300 transition-all hover:backdrop-blur-[50px] hover:border-white/35 hover:scale-[1.01]">
           <div className="flex items-center justify-between border-b border-white/15 pb-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white">
             <span>Audio & Soundscape Mixer</span>
             <Sliders className="w-3.5 h-3.5 text-white/80" />
@@ -159,12 +159,12 @@ export const ControlBar: React.FC<ControlBarProps> = ({
       )}
 
       {/* Immersive UI Glass Floating Control Dock */}
-      <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-3.5 rounded-[40px] bg-white/12 border border-white/25 backdrop-blur-[40px] shadow-[0_16px_40px_rgba(0,0,0,0.5)] text-white">
+      <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-3.5 rounded-[40px] bg-white/12 border border-white/25 backdrop-blur-[40px] shadow-[0_16px_40px_rgba(0,0,0,0.5)] text-white transition-all duration-300 hover:scale-[1.015] hover:backdrop-blur-[50px] hover:border-white/35">
         {/* Stream Gallery / View Switcher Button */}
         <button
           onClick={onOpenGallery}
           title="Browse All 10 Windows"
-          className="p-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 transition-all duration-300 hover:scale-105 cursor-pointer text-white/90 hover:text-white"
+          className="p-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 hover:border-white/30 backdrop-blur-md hover:backdrop-blur-xl transition-all duration-300 hover:scale-110 cursor-pointer text-white/90 hover:text-white"
         >
           <Grid className="w-5 h-5" />
         </button>

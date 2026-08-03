@@ -142,7 +142,7 @@ export const StreamDrawer: React.FC<StreamDrawerProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/40 backdrop-blur-3xl animate-in fade-in duration-300">
-      <div className="relative w-full max-w-4xl max-h-[85vh] overflow-y-auto rounded-[36px] bg-white/12 border border-white/25 backdrop-blur-[45px] text-white shadow-[0_32px_64px_-12px_rgba(0,0,0,0.6)] p-6 sm:p-8 flex flex-col gap-6">
+      <div className="relative w-full max-w-4xl max-h-[85vh] overflow-y-auto rounded-[36px] bg-white/12 border border-white/25 backdrop-blur-[45px] text-white shadow-[0_32px_64px_-12px_rgba(0,0,0,0.6)] p-6 sm:p-8 flex flex-col gap-6 transition-all duration-500 hover:scale-[1.008] hover:backdrop-blur-[55px] hover:border-white/35">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-white/10 pb-4">
           <div className="flex items-center gap-3">
@@ -208,10 +208,10 @@ export const StreamDrawer: React.FC<StreamDrawerProps> = ({
                   onSelectStream(stream);
                   onClose();
                 }}
-                className={`p-5 rounded-[28px] text-left border transition-all duration-300 flex flex-col justify-between gap-3 group cursor-pointer relative overflow-hidden ${
+                className={`p-5 rounded-[28px] text-left border backdrop-blur-xl transition-all duration-300 flex flex-col justify-between gap-3 group cursor-pointer relative overflow-hidden hover:scale-[1.03] hover:backdrop-blur-2xl ${
                   isActive
                     ? 'bg-white/20 border-white/40 text-white shadow-xl ring-1 ring-white/30'
-                    : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 text-white/90'
+                    : 'bg-white/10 border-white/15 hover:bg-white/20 hover:border-white/30 text-white'
                 }`}
               >
                 {/* Active Badge */}

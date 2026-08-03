@@ -10,10 +10,10 @@ interface LandingOverlayProps {
 export const LandingOverlay: React.FC<LandingOverlayProps> = ({ onStart }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/40 backdrop-blur-3xl animate-in fade-in duration-500">
-      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-[40px] bg-white/12 border border-white/25 backdrop-blur-[45px] text-white shadow-[0_32px_64px_-12px_rgba(0,0,0,0.6)] p-6 sm:p-10 flex flex-col items-center text-center gap-8">
+      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-[40px] bg-white/12 border border-white/25 backdrop-blur-[45px] text-white shadow-[0_32px_64px_-12px_rgba(0,0,0,0.6)] p-6 sm:p-10 flex flex-col items-center text-center gap-8 transition-all duration-500 hover:scale-[1.008] hover:backdrop-blur-[55px] hover:border-white/35">
         {/* Top Hero Branding */}
         <div className="flex flex-col items-center gap-3 max-w-2xl">
-          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-xs font-mono tracking-widest uppercase text-white shadow-inner backdrop-blur-md">
+          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-xs font-mono tracking-widest uppercase text-white shadow-inner backdrop-blur-md transition-all duration-300 hover:scale-105 hover:backdrop-blur-xl hover:bg-white/20">
             <Globe className="w-3.5 h-3.5 text-white animate-spin" />
             <span>Interactive Live Windows</span>
           </div>
@@ -53,7 +53,7 @@ export const LandingOverlay: React.FC<LandingOverlayProps> = ({ onStart }) => {
               <button
                 key={stream.id}
                 onClick={() => onStart(stream)}
-                className="p-4 rounded-[24px] bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/35 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between gap-3 group cursor-pointer shadow-lg hover:shadow-2xl"
+                className="p-4 rounded-[24px] bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/35 backdrop-blur-xl hover:backdrop-blur-2xl transition-all duration-300 hover:scale-[1.035] flex flex-col justify-between gap-3 group cursor-pointer shadow-lg hover:shadow-2xl"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-2">

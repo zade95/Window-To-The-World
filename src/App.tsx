@@ -200,7 +200,7 @@ export default function App() {
             {soundState.streamMuted && (
               <button
                 onClick={() => setSoundState((prev) => ({ ...prev, streamMuted: false }))}
-                className="px-3.5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 backdrop-blur-xl text-xs font-semibold text-white transition-all flex items-center gap-2 cursor-pointer shadow-lg"
+                className="px-3.5 py-2.5 rounded-full bg-white/12 hover:bg-white/22 border border-white/20 hover:border-white/35 backdrop-blur-xl hover:backdrop-blur-2xl text-xs font-semibold text-white transition-all duration-300 hover:scale-105 flex items-center gap-2 cursor-pointer shadow-lg"
               >
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
@@ -214,7 +214,7 @@ export default function App() {
             <button
               onClick={() => setIsLandingOpen(true)}
               title="Open Start Window & Catalog"
-              className="px-3.5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 backdrop-blur-xl text-xs font-semibold text-white transition-all flex items-center gap-1.5 cursor-pointer shadow-lg"
+              className="px-3.5 py-2.5 rounded-full bg-white/12 hover:bg-white/22 border border-white/20 hover:border-white/35 backdrop-blur-xl hover:backdrop-blur-2xl text-xs font-semibold text-white transition-all duration-300 hover:scale-105 flex items-center gap-1.5 cursor-pointer shadow-lg"
             >
               <Globe className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Portal Screen</span>
